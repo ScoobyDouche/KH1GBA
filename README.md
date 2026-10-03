@@ -1,78 +1,60 @@
-# Kingdom Hearts: Chain of Memories (GBA)
+# KH1GBA
 
-[![Build Status]][actions] [![us]][progress] [![jp]][progress] [![eu]][progress]
+**Kingdom Hearts 1 demake for Game Boy Advance**
 
-[Build Status]: https://github.com/pheenoh/khcom/actions/workflows/build.yml/badge.svg
-[actions]: https://github.com/pheenoh/khcom/actions/workflows/build.yml
-
-[us]: https://decomp.dev/pheenoh/khcom/us.svg?mode=shield&label=us
-[jp]: https://decomp.dev/pheenoh/khcom/jp.svg?mode=shield&label=jp
-[eu]: https://decomp.dev/pheenoh/khcom/eu.svg?mode=shield&label=eu
-[progress]: https://decomp.dev/pheenoh/khcom
-
-<!-- markdownlint-disable MD033 -->
-[<img src="https://decomp.dev/pheenoh/khcom/us.svg?w=512&h=256" width="512" height="256" alt="Progress graph for the us version">][progress]
-<!-- markdownlint-enable MD033 -->
-
-A matching decompilation of *Kingdom Hearts: Chain of Memories*
-for the Game Boy Advance.
+This is a fork of [Pheenoh/khcom](https://github.com/Pheenoh/khcom) (the matching decompilation of *Kingdom Hearts: Chain of Memories* for GBA).  
+The goal is to turn it into a full demake of *Kingdom Hearts 1* running on the Game Boy Advance.
 
 > [!IMPORTANT]
-> This repository does **not** contain any game assets or ROMs. An existing
-> copy of the game is required to build.
+> This repository does **not** contain any game assets or ROMs.  
+> You still need a legally dumped copy of *Kingdom Hearts: Chain of Memories* (GBA) to build and extract assets.
 
-The project can target the following versions:
+## Current Status
+- ✅ Base: 100% matching CoM decompilation (engine, battle, maps, events, etc.)
+- 🚧 Project just started – no KH1-specific changes yet
+- Planned direction: Keep (or adapt) the card combat system, replace maps/story/assets with a compressed KH1 experience, or experiment with simplified real-time combat on top of this engine.
 
-| Version | Code | SHA-1 |
-|---------|------|-------|
-| `us`    | B8CE | `10729bd884f8fdca7a310b6d606c52e46657aa48` |
-| `jp`    | B8CJ | `59ec0a0a4ccd1e6acb3bbd7bfb21d63988958cfa` |
-| `eu`    | B8CP | `8db73586cdb11b3795907edebf43228dbcd3e6b2` |
+## Building (same as original decomp)
 
-## Dependencies
-
+### Dependencies
 - git
 - ninja
-- python3
-- PyYAML (`python3 -m pip install pyyaml`)
+- python3 + PyYAML (`python3 -m pip install pyyaml`)
 - `binutils-arm-none-eabi`
 - [agbcc](https://github.com/pret/agbcc):
 
-  ```sh
-  git clone https://github.com/pret/agbcc
-  cd agbcc && ./build.sh && ./install.sh ../khcom
-  ```
+```sh
+git clone https://github.com/pret/agbcc
+cd agbcc && ./build.sh && ./install.sh ../khcom   # or ../KH1GBA if you rename the folder
+```
 
-## Building
-
-- Clone the repository:
-
-  ```sh
-  git clone https://github.com/pheenoh/khcom.git
-  ```
-
-- Copy your legally dumped ROM(s) into `roms/` as `<code>.gba` (e.g. `roms/B8CE.gba`).
-
-- Extract assets:
-
-  ```sh
-  python3 tools/extract_assets.py
-  ```
-
-- Configure:
-
-  ```sh
-  python3 configure.py
-  ```
-
-  To use a version other than `us`, specify it with `--version`.
-
-- Build:
-
-  ```sh
-  ninja
-  ```
+### Steps
+1. Clone this repo:
+   ```sh
+   git clone https://github.com/ScoobyDouche/khcom.git KH1GBA
+   cd KH1GBA
+   ```
+2. Place your legally dumped CoM ROM(s) in `roms/` as `B8CE.gba` (US), `B8CJ.gba` (JP), or `B8CP.gba` (EU).
+3. Extract assets:
+   ```sh
+   python3 tools/extract_assets.py
+   ```
+4. Configure:
+   ```sh
+   python3 configure.py
+   ```
+5. Build:
+   ```sh
+   ninja
+   ```
 
 ## License
+The decompilation source is under [CC0 1.0 Universal](LICENSE.md).  
+All Kingdom Hearts / Disney / Square Enix intellectual property remains the property of their respective owners. This is an unofficial fan project.
 
-This project is released under the [CC0 1.0 Universal](LICENSE.md) license.
+## Credits
+- Original CoM decomp: [Pheenoh](https://github.com/Pheenoh/khcom)
+- This fork / KH1GBA demake idea: starting here
+
+---
+*Let’s make Kingdom Hearts 1 run on GBA.*
